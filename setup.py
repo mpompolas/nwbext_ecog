@@ -11,8 +11,8 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='ecog',
-    version='0.1',
+    name='nwbext_ecog',
+    version='0.2',
     description='Convert data to nwb',
     long_description=long_description,
     author='Ben Dichter',
@@ -20,5 +20,5 @@ setup(
     keywords=['nwb', 'extension'],
     packages=find_packages(),
     install_requires=['pynwb', 'to_nwb'],
-    entry_points={'pynwb.extensions': 'ecog = pynwb_extension_ecog'},
+    entry_points={'pynwb.extensions': 'ecog = nwbext_ecog'},
 )
