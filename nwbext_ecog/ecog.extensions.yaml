@@ -21,20 +21,20 @@ groups:
     - name: faces
       dtype: uint
       doc: faces for surface, indexes vertices
+      shape:
+      - null
+      - 3
       dims:
       - face_number
       - vertex_index
-      shape:
-      -
-      - 3
     - name: vertices
       dtype: float
       doc: vertices for surface, points in 3D space
+      shape:
+      - null
+      - 3
       dims:
       - vertex_number
       - xyz
-      shape:
-      -
-      - 3
     quantity: +
   quantity: '?'
