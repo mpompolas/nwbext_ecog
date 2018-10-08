@@ -34,9 +34,16 @@ generateExtension('/path/to/nwbext_ecog/nwbext_ecog/ecog.namespace.yaml');
 
 to use:
 ```matlab
+cortical_surfaces = types.ecog.CorticalSurfaces;
+
+%%% loop me
 surf = types.ecog.Surface('source', mesh_file, ...
         'faces', faces, 'vertices', vertices);
-    cortical_surfaces.surface.set('surf_name', surf);
+cortical_surfaces.surface.set('surf_name', surf);
+%%%
+
+file.acquisition.set('CorticalSurfaces', cortical_surfaces);
+
 ```
 
 
