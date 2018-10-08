@@ -5,6 +5,7 @@ There are two data types, `Surface` and `CorticalSurfaces`. `CorticalSurfaces` i
 
 ## Usage
 
+### python
 ```python
 import pynwb
 ecog_ext = pynwb.extensions['ecog']
@@ -23,6 +24,19 @@ for mesh in range(meshes):
     cortical_surfaces.add_surface(name='...', source='...',faces=mesh.faces, vertices=mesh.veritices)
 
 nwbfile.add_acquisition(cortical_surfaces)
+```
+
+### MATLAB
+to install:
+```matlab
+generateExtension('/path/to/nwbext_ecog/nwbext_ecog/ecog.namespace.yaml');
+```
+
+to use:
+```matlab
+surf = types.ecog.Surface('source', mesh_file, ...
+        'faces', faces, 'vertices', vertices);
+    cortical_surfaces.surface.set('surf_name', surf);
 ```
 
 
