@@ -1,7 +1,7 @@
 import os
 
 from pynwb import load_namespaces
-from pynwb.auto_class import get_class, get_multi_container
+from to_nwb.extensions.auto_class import get_class, get_multi_container
 
 import numpy as np
 

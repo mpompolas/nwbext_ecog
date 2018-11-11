@@ -12,13 +12,13 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='nwbext_ecog',
-    version='0.2',
+    version='0.3',
     description='Convert data to nwb',
     long_description=long_description,
     author='Ben Dichter',
     author_email='ben.dichter@gmail.com',
     keywords=['nwb', 'extension'],
     packages=find_packages(),
-    install_requires=['pynwb', 'to_nwb'],
-    entry_points={'pynwb.extensions': 'ecog = nwbext_ecog'},
+    install_requires=['pynwb'],
+    #entry_points={'pynwb.extensions': 'ecog = nwbext_ecog'},
 )
