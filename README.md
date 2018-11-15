@@ -8,21 +8,16 @@ There are two data types, `Surface` and `CorticalSurfaces`. `CorticalSurfaces` i
 ### python
 ```python
 import pynwb
-ecog_ext = pynwb.extensions['ecog']
-Surface = ecog_ext.Surface
-CorticalSurfaces = ecog_ext.CorticalSurfaces
+from nwbext_ecog.ecog_manual import CorticalSurfaces
 
 nwbfile = pynwb.NWBFile(...)
 
-
 ...
 
-meshes = ...
-
-cortical_surfaces = CorticalSurfaces(source='...')
-for mesh in range(meshes):
-    cortical_surfaces.add_surface(name='...', source='...',faces=mesh.faces, vertices=mesh.veritices)
-
+cortical_surfaces = CorticalSurfaces()
+## loop me
+    cortical_surfaces.create_surface(name='...', faces=faces, vertices=veritices)
+##
 nwbfile.add_acquisition(cortical_surfaces)
 ```
 
@@ -37,9 +32,8 @@ to use:
 cortical_surfaces = types.ecog.CorticalSurfaces;
 
 %%% loop me
-surf = types.ecog.Surface('source', mesh_file, ...
-        'faces', faces, 'vertices', vertices);
-cortical_surfaces.surface.set('surf_name', surf);
+surf = types.ecog.Surface('faces', faces, 'vertices', vertices);
+cortical_surfaces.surface.set('cortical_surfaces', surf);
 %%%
 
 file.acquisition.set('CorticalSurfaces', cortical_surfaces);
