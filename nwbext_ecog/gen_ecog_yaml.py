@@ -19,9 +19,7 @@ surface = NWBGroupSpec(
     attributes=[
         NWBAttributeSpec(
             name='help', dtype='text', doc='help',
-            value='This holds Surface objects')
-    ]
-)
+            value='This holds Surface objects')])
 
 surfaces = NWBGroupSpec(
     neurodata_type_def='CorticalSurfaces',
@@ -34,8 +32,16 @@ surfaces = NWBGroupSpec(
         value='This holds the vertices and faces for the cortical surface '
               'meshes')])
 
+ecog_subject = NWBGroupSpec(
+    neurodata_type_def='ECoGSubject',
+    neurodata_type_inc='Subject',
+    name='subject',
+    doc='extension of subject that holds cortical surface data',
+    groups=[surfaces]
+)
+
 ns_builder = NWBNamespaceBuilder(doc=namespace + ' extensions', name=namespace,
-                                 version='1.0', author='Ben Dichter',
+                                 version='1.1', author='Ben Dichter',
                                  contact='bendichter@gmail.com')
-ns_builder.add_spec(ext_source, surfaces)
+ns_builder.add_spec(ext_source, ecog_subject)
 ns_builder.export(ns_path)
