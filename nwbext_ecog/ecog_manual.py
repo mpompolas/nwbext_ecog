@@ -60,7 +60,7 @@ class ECoGSubject(Subject):
 
     __nwbfields__ = ('cortical_surfaces',)
 
-    @docval(*get_docval(Subject) + (
+    @docval(*get_docval(Subject.__init__) + (
         {
             'name': 'cortical_surfaces',
             'doc': 'extension of Subject that allows adding cortical surface data',
