@@ -1,5 +1,5 @@
 import unittest2 as unittest
-from pynwb import NWBFile
+from pynwb import NWBFile, NWBHDF5IO
 from datetime import datetime
 
 import numpy as np
@@ -29,3 +29,21 @@ class ECoGSubjectTest(unittest.TestCase):
         cortical_surfaces.create_surface('test', vertices=self.vertices, faces=self.faces)
         self.nwbfile.subject = ECoGSubject()
         self.nwbfile.subject.cortical_surfaces = cortical_surfaces
+
+    def test_io(self):
+
+        cortical_surfaces = CorticalSurfaces()
+        cortical_surfaces.create_surface('test', vertices=self.vertices, faces=self.faces)
+        self.nwbfile.subject = ECoGSubject(subject_id='id', cortical_surfaces=cortical_surfaces)
+
+        with NWBHDF5IO('test.nwb', 'w') as io:
+            io.write(self.nwbfile)
+
+        with NWBHDF5IO('test.nwb', 'r') as io:
+            nwbfile = io.read()
+            np.testing.assert_allclose(
+                self.nwbfile.subject.cortical_surfaces.surfaces['test'].vertices,
+                nwbfile.subject.cortical_surfaces.surfaces['test'].vertices)
+            np.testing.assert_allclose(
+                self.nwbfile.subject.cortical_surfaces.surfaces['test'].faces,
+                nwbfile.subject.cortical_surfaces.surfaces['test'].faces)
