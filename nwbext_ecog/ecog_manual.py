@@ -58,7 +58,7 @@ class CorticalSurfaces(MultiContainerInterface):
 @register_class('ECoGSubject', 'ecog')
 class ECoGSubject(Subject):
 
-    __nwbfields__ = ('cortical_surfaces',)
+    __nwbfields__ = ({'name': 'cortical_surfaces', 'child': True},)
 
     @docval(*get_docval(Subject.__init__) + (
         {

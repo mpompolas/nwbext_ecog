@@ -1,8 +1,8 @@
-import unittest2 as unittest
-from pynwb import NWBFile, NWBHDF5IO
 from datetime import datetime
 
 import numpy as np
+import unittest2 as unittest
+from pynwb import NWBFile, NWBHDF5IO
 
 from .ecog_manual import ECoGSubject, CorticalSurfaces
 
