@@ -12,7 +12,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='nwbext_ecog',
-    version='0.3',
+    version='0.4',
     description='Convert data to nwb',
     long_description=long_description,
     author='Ben Dichter',

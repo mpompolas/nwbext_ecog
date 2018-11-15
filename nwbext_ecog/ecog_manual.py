@@ -5,7 +5,8 @@ from collections import Iterable
 import numpy as np
 from pynwb import load_namespaces, register_class, docval
 from pynwb.core import NWBContainer, MultiContainerInterface
-from pynwb.form.utils import popargs
+from pynwb.form.utils import popargs, get_docval
+from pynwb.file import Subject
 
 filepath = os.path.realpath(__file__)
 basedir = os.path.split(filepath)[0]
@@ -52,3 +53,23 @@ class CorticalSurfaces(MultiContainerInterface):
     }
 
     __help = "triverts for cortical surfaces"
+
+
+@register_class('ECoGSubject', 'ecog')
+class ECoGSubject(Subject):
+
+    __nwbfields__ = ({'name': 'cortical_surfaces', 'child': True},)
+
+    @docval(*get_docval(Subject.__init__) + (
+        {
+            'name': 'cortical_surfaces',
+            'doc': 'extension of Subject that allows adding cortical surface data',
+            'type': CorticalSurfaces,
+            'default': None,
+        },)
+            )
+    def __init__(self, **kwargs):
+        cortical_surfaces = popargs('cortical_surfaces', kwargs)
+        super(ECoGSubject, self).__init__(**kwargs)
+        if cortical_surfaces is not None:
+            self.cortical_surfaces = cortical_surfaces
